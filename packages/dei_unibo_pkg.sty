@@ -1,0 +1,209 @@
+%==============================================================================
+% DEI - UNIBO - (dei_unibo.sty) Style file
+% 2021.04: Andrea Eusebi - andrea.eusebi5@unibo.it
+%==============================================================================
+\def\Presentation@Version{0.1}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{dei_unibo}[2021/02/12, v. \Presentation@Version]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Colors
+
+\usepackage{xcolor}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Input parameters management
+
+\newif\ifbt
+\newif\ifmt
+\DeclareOption{bt}{
+    \global\bttrue
+    \global\mtfalse
+}
+
+\DeclareOption{mt}{
+    \global\btfalse
+    \global\mttrue
+}
+
+\newif\ifinitalian
+\DeclareOption{italian}{\global\initaliantrue}
+\DeclareOption{english}{\global\initalianfalse}
+
+\ExecuteOptions{bt,english}
+\ProcessOptions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Language-specific packages
+
+\ifinitalian
+    \usepackage[english,italian]{babel}
+\else
+    \usepackage[english]{babel}
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title page
+
+\newcommand{\@titleName}{}
+\newcommand{\titleName}[1]{\gdef\@titleName{#1}}
+
+\newcommand{\@degreeName}{}
+\newcommand{\degreeName}[1]{\gdef\@degreeName{#1}}
+
+\newcommand{\@graduatingSubject}{}
+\newcommand{\graduatingSubject}[1]{\gdef\@graduatingSubject{#1}}
+
+\newcommand{\@student}{}
+\newcommand{\student}[1]{\gdef\@student{#1}}
+
+\newcommand{\@mainSupervisor}{}
+\newcommand{\mainSupervisor}[1]{\gdef\@mainSupervisor{#1}}
+
+\newif\ifcoSupervisorA
+\newcommand{\@coSupervisorA}{}
+\newcommand{\coSupervisorA}[1]{\gdef\@coSupervisorA{#1}\coSupervisorAtrue}
+
+\newif\ifcoSupervisorB
+\newcommand{\@coSupervisorB}{}
+\newcommand{\coSupervisorB}[1]{\gdef\@coSupervisorB{#1}\coSupervisorBtrue}
+
+\newcommand{\@academicYear}{}
+\newcommand{\academicYear}[1]{\gdef\@academicYear{#1}}
+
+\newcommand{\@graduationSession}{}
+\newcommand{\graduationSession}[1]{\gdef\@graduationSession{#1}}
+
+%%%%%%%
+% Definition of title page
+\usepackage{geometry}
+\usepackage{changepage}
+
+\renewcommand{\maketitle}{
+
+\pagestyle{empty}
+
+\newgeometry{left=2cm, right=2cm, top=3.5cm, bottom=3.5cm}
+\begin{center}
+    {   
+        {\large{\textbf{ALMA MATER STUDIORUM - UNIVERSIT\'A DI BOLOGNA}}}
+    }
+    
+    % line
+    \vspace{2mm}
+    {\color{black} \rule{\linewidth}{0.2mm} }
+    
+    \vspace{5mm}
+    
+	{
+	    \large{\textsc {\textbf{ SCUOLA DI INGEGNERIA} }} \\
+	    \vspace{3mm}
+	    \large
+	        {
+	        \textsc
+	            {Dipartimento di \\ 
+	            Ingegneria dell'Energia Elettrica e dell'Informazione
+	            }\\
+	        ``Guglielmo Marconi" \\
+	        \textsc
+	            {DEI} \\
+	        }
+	        
+	    \vspace{7mm}
+	    
+	    \ifinitalian
+	        \ifbt
+	            \large{ CORSO DI LAUREA IN \@degreeName } \\
+	        \fi
+	        \ifmt
+	            \large{ CORSO DI LAUREA MAGISTRALE IN \@degreeName } \\
+	        \fi
+        \else
+        	\ifbt
+         		\large{ BACHELOR DEGREE IN \@degreeName } \\
+         	\fi
+        	\ifmt
+        		\large{ MASTER DEGREE IN \@degreeName } \\
+        	\fi
+        \fi
+	}
+	
+	\vspace{11mm}
+	
+	\ifinitalian
+	    {\large{\textbf { TESI DI LAUREA } } } \\
+    \else
+	    {\large{\textbf { GRADUATION THESIS } } } \\
+    \fi
+	{\Large { in \\
+	               \@graduatingSubject \\}  }
+	               
+    
+    \vspace{8mm}  
+    
+    % title
+    \begin{adjustwidth}{50pt}{50pt}
+        \begin{center}
+        	\linespread{1.1}\LARGE\textbf{\@titleName}
+        \end{center}
+    \end{adjustwidth}
+    
+    \vspace{25mm}
+
+    % candidates and supervisor names
+    \begin{adjustwidth}{30pt}{30pt}
+    \begin{minipage}[t]{0.35\textwidth}\raggedright
+        \ifinitalian
+    	    {\large{\sc CANDIDATO:} }\\
+	    \else
+	        {\large{\sc CANDIDATE:} }\\
+	    \fi
+    	\vspace{2mm}
+    	{\large{\bf \textsc{\@student}} } 
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.4\textwidth}\raggedleft
+        \ifinitalian
+    	    \large{\sc RELATORI:}\\
+	    \else
+	        \large{\sc SUPERVISORS:}\\
+        \fi
+    	{\bf \textsc{\@mainSupervisor}}\\
+    	
+    	\ifcoSupervisorA
+    	    \vspace{1mm}
+    	    {\bf \textsc{\@coSupervisorA}}\\
+    	\fi
+    	\ifcoSupervisorB
+    	    \vspace{1mm}
+    	    {\bf \textsc{\@coSupervisorB}}\\
+    	\fi
+    \end{minipage}
+    \end{adjustwidth}
+    
+    \vspace{10mm}
+    
+    \ifinitalian
+        \begin{center}
+        	{\large{\sc Anno Accademico \@academicYear}} \\
+        	\vspace{2mm}	
+        	{\large{ \sc Sessione di Laurea \@graduationSession}}	
+        \end{center}
+    \else
+    \begin{center}
+        	{\large{\sc Academic Year \@academicYear}} \\
+        	\vspace{2mm}	
+        	{\large{ \sc Graduation Session \@graduationSession}}	
+        \end{center}
+    \fi
+    
+\end{center}
+
+\restoregeometry
+
+\cleardoublepage
+
+}

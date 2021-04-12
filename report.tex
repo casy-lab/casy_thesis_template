@@ -1,0 +1,104 @@
+%==============================================================================
+% CASY-UNIBO - Template for student projects at CASY
+%==============================================================================
+
+\documentclass[12pt,twoside,a4paper]{report}
+
+% CASY-UNIBO package
+% TODO Choose options according to your project
+% bt/mt: Bachelor Thesis, Master Thesis
+% italian/english: Italian/English
+\usepackage[bt,italian]{packages/dei_unibo_pkg}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LaTeX preamble
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preambles/dei_preamble}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% TODO Add your title (all capital letters)
+\titleName{\LaTeX\ \!-Template for Student Theses at CASY - UNIBO}
+
+% TODO Add the name of your degree (all capital letters)
+\degreeName{- DEGREE NAME -}
+
+% TODO Add the name of the course in which you take the degree (all lowercase letters)
+\graduatingSubject{- name of the course -}
+
+% TODO Add name of the author
+\student{- Student Name -}
+
+% TODO Add the supervisors
+\mainSupervisor{Chiar.mo Prof Mario Rossi}
+\coSupervisorA{Dott. Ing. Mario Rossi}
+\coSupervisorB{Title and coSupervisor Name}
+
+% TODO Change if necessary
+\academicYear{\advance\year by -1 \the\year\advance\year by 1 /\the\year} % Last year/this year
+
+% TODO Add gradutation session number ( in roman numbers)
+\graduationSession{I}
+
+\maketitle
+\pagestyle{plain}
+\pagenumbering{roman}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Table of contents
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Table of Contents depth (TODO change if necessary)
+\setcounter{tocdepth}{2}
+
+\tableofcontents
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Chapters standard
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{chapters/preface}
+\cleardoublepage
+\input{chapters/abstract}
+\cleardoublepage
+\input{chapters/symbols}
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Chapters custom
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\pagenumbering{arabic}
+
+% TODO Add your own chapters here
+\input{chapters/introduction}
+\cleardoublepage
+\input{chapters/chapter}
+\cleardoublepage
+% \input{}
+% \cleardoublepage
+% \input{}
+% \cleardoublepage
+% ...
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bibliography
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{bibliography/IEEEtranN}
+\bibliography{bibliography/references}
+\addcontentsline{toc}{chapter}{Bibliography}
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Appendix
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+\input{chapters/appendix_text}
+\cleardoublepage
+\input{chapters/appendix_datasheets}
+
+\end{document}
